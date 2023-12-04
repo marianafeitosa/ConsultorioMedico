@@ -35,23 +35,36 @@ public class Login extends JFrame {
     private JPasswordField pfSenha;
     private JButton btnLogin; // Usando o bot�o arredondado
     private JLabel mensagemErro;
+        private static JLabel bgImg;
+
+    
+  
+            
 
     public Login() throws SQLException {
         conexao = new Conexao();
         conexao.conecta();
         initComponents();
+        
+        JFrame frame = new JFrame("Sua Tela");
+
+        // Crie um JPanel para conter a imagem
+        JPanel panel = new JPanel();
+
+        // Crie um JLabel com a imagem e adicione ao JPanel
+        bgImg = new JLabel(new ImageIcon("src/imagens/fundologin.png"));
+        panel.add(bgImg);
+
+        // Adicione o JPanel ao JFrame
+        frame.getContentPane().add(panel);
+        
+        
+         ImageIcon icone = new ImageIcon("src/imagens/medico.png");
+        setIconImage(icone.getImage());
     }
 
     private void initComponents() {
         setLayout(null);  // Defina o layout como nulo para posicionamento absoluto
-    
-        // Imagem de fundo
-        ImagePanel backgroundPanel = new ImagePanel("src/imagens/fundologin.jpg"); // Substitua pelo caminho real da sua imagem de fundo
-        backgroundPanel.setBounds(0, 0, getWidth(), getHeight());
-        add(backgroundPanel);
- 
-        // Defina o painel de conteúdo como um painel transparente
-        setContentPane(new JPanel(null));
 
         // Configurações gerais do JFrame
         setTitle("Login");
@@ -106,7 +119,6 @@ public class Login extends JFrame {
         tela.add(mensagemErro);
         
         
-          tela.add(backgroundPanel);
         setSize(450, 300); // Aumento do tamanho da janela
         setLocationRelativeTo(null); // Centraliza a janela no meio
        
@@ -163,24 +175,7 @@ public class Login extends JFrame {
         Login app = new Login();
         app.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
-     public class ImagePanel extends JPanel {
-
-        private Image backgroundImage;
-
-        public ImagePanel(String imagePath) {
-            try {
-                backgroundImage = ImageIO.read(new File(imagePath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
-
 }
+    
+    
+

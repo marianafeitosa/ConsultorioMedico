@@ -38,6 +38,7 @@ public class TelaAgendamento extends JFrame {
 
     JTable tblConsultas;
     JScrollPane scpTabela;
+    JLabel bgImg;
 
     public TelaAgendamento() throws SQLException {
         conexaoConsultas = new Conexao();
@@ -47,12 +48,20 @@ public class TelaAgendamento extends JFrame {
         setResizable(false);
         Container tela = getContentPane();
         tela.setLayout(null);
+        
+        
+        //imagem fundo
+           bgImg = new JLabel(new ImageIcon("src/imagens/fundoprincipal.png"));
+
+        
+         ImageIcon icone = new ImageIcon("src/imagens/medico.png");
+        setIconImage(icone.getImage());
 
        
         // Adicionando JLabel com o título personalizado
         JLabel lblTitulo = new JLabel("Consultas Agendadas");
-        lblTitulo.setFont(new Font("Poppins", Font.BOLD, 24)); // Aumentando o tamanho da fonte
-        lblTitulo.setBounds((getWidth() -100) / 2, 10, 200, 30); // Centralizando na tela
+        lblTitulo.setFont(new Font("Poppins", Font.BOLD, 18)); // Aumentando o tamanho da fonte
+        lblTitulo.setBounds((getWidth() -150) / 2, 10, 200, 30); // Centralizando na tela
         tela.add(lblTitulo);
         
         
@@ -73,6 +82,7 @@ public class TelaAgendamento extends JFrame {
 
         tela.add(tblConsultas);
         tela.add(scpTabela);
+        tela.add(bgImg);
 
         scpTabela.setViewportView(tblConsultas);
 

@@ -53,7 +53,7 @@ public class TelaConsultasAgendadas extends JFrame {
     JFormattedTextField formattedTextFieldDataConsulta;
     MaskFormatter maskFormatterDataConsulta;
     JTextField textFieldPesquisa;
-    JButton prim, anterior, prox, ultimo, novoReg, gravar, alterar, excluir, pesquisar;
+    JButton prim, anterior, prox, ultimo, novoReg, gravar, alterar, excluir, pesquisar , sair;
 
     JTable tblConsultas;
     JScrollPane scpTabela;
@@ -67,10 +67,10 @@ public class TelaConsultasAgendadas extends JFrame {
         Container tela = getContentPane();
         tela.setLayout(null);
 
-        ImageIcon icone = new ImageIcon("src/img/gato.png");
+        ImageIcon icone = new ImageIcon("src/imagens/medico.png");
         setIconImage(icone.getImage());
 
-        bgImg = new JLabel(new ImageIcon("src/img/Background.png"));
+        bgImg = new JLabel(new ImageIcon("src/imagens/fundoprincipal.png"));
 
         rId = new JLabel("ID: ");
         rNomePaciente = new JLabel("Nome Paciente: ");
@@ -103,19 +103,27 @@ public class TelaConsultasAgendadas extends JFrame {
         prim = new JButton("Primeiro");
         ultimo = new JButton("Último");
         pesquisar = new JButton("Pesquisar");
+// Array de caminhos para os ícones
+        String icones[] = {"src/imagens/esq.png", "src/imagens/dir.png", "src/imagens/novo.png", "src/imagens/gravar.gif", "src/imagens/alterar.png", "src/imagens/excluir.png", "src/imagens/sair.png", "src/imagens/pesquisar.gif", "src/imagens/prim.png","src/imagens/ultimo.png"};
 
-        String icones[] = {"src/imagens/dir.png", "src/imagens/esq.png"};
-        ImageIcon imagem[] = new ImageIcon[2];
-        for (int i = 0; i < 2; i++) {
+        // Array de ImageIcons
+        ImageIcon imagem[] = new ImageIcon[icones.length];
+        for (int i = 0; i < icones.length; i++) {
             imagem[i] = new ImageIcon(icones[i]);
         }
+
+        // Inicialização dos botões com os ícones
         prox = new JButton(imagem[0]);
         anterior = new JButton(imagem[1]);
+        novoReg = new JButton(imagem[2]);
+        gravar = new JButton(imagem[3]);
+        alterar = new JButton(imagem[4]);
+        excluir = new JButton(imagem[5]);
+        sair = new JButton(imagem[6]);
+        pesquisar = new JButton(imagem[7]);
+        prim = new JButton(imagem[8]);
+        ultimo = new JButton(imagem[9]);
 
-        novoReg = new JButton("Novo");
-        gravar = new JButton("Gravar");
-        alterar = new JButton("Alterar");
-        excluir = new JButton("Excluir");
 
         tblConsultas = new JTable() {
             public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
@@ -134,6 +142,7 @@ public class TelaConsultasAgendadas extends JFrame {
 
         tela.add(tblConsultas);
         tela.add(scpTabela);
+        
        
         tela.add(rNomePaciente);
         tela.add(rEspecialidade);
@@ -160,6 +169,8 @@ public class TelaConsultasAgendadas extends JFrame {
               tela.add( gravar);
               tela.add( alterar);
               tela.add( excluir);
+              tela.add(sair);
+              tela.add(bgImg);
               
               
         
@@ -205,6 +216,7 @@ public class TelaConsultasAgendadas extends JFrame {
         formattedTextFieldDataConsulta.setBounds(150, 200, 120, 20);
         textFieldHorarioConsulta.setBounds(150, 240, 80, 20);
         textFieldEmail.setBounds(150, 280, 300, 20);
+      textFieldPesquisa.setBounds(250, 530, 120, 20);
 
         prim.setBounds(513, 180, 85, 20);
         ultimo.setBounds(513, 210, 85, 20);
@@ -213,8 +225,10 @@ public class TelaConsultasAgendadas extends JFrame {
         novoReg.setBounds(513, 60, 70, 30);
         gravar.setBounds(593, 60, 70, 30);
         alterar.setBounds(513, 100, 70, 30);
-        excluir.setBounds(593, 100, 70, 30);
-        pesquisar.setBounds(250, 530, 100, 30);
+      excluir.setBounds(593, 100, 70, 30);
+sair.setBounds(600, 140, 70, 30); // Ajuste a coordenada Y para 140 ou outro valor adequado
+
+       pesquisar.setBounds(380, 530, 100, 30);
 
         tela.setBackground(Color.LIGHT_GRAY);
         rId.setFont(new Font("Calibri", Font.BOLD, 16));
@@ -224,7 +238,17 @@ public class TelaConsultasAgendadas extends JFrame {
         rPesquisa.setFont(new Font("Calibri", Font.BOLD, 14));
         rNavegacao.setFont(new Font("Calibri", Font.BOLD, 16));
 
-        // Adicione aqui os listeners dos botões de navegação, novo, gravar, alterar, excluir e pesquisar
+        // Adicione aqui os listeners dos botões de navegação, novo, gravar, alterar, excluir, pesquisar e sair
+        
+        
+        sair.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       JOptionPane.showMessageDialog(null, "Finalizando programa...");
+        System.exit(0);
+    }
+});
+     
 prox.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
         try {
@@ -426,6 +450,9 @@ pesquisar.addActionListener(new ActionListener() {
         
        
     }
+    
+    
+
 
     // Métodos preencherTabela, posicionarRegistro, e outros que você precisar permanecem iguais
     
