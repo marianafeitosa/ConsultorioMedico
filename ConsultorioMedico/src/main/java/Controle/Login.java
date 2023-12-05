@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -46,37 +47,29 @@ public class Login extends JFrame {
         conexao.conecta();
         initComponents();
         
-        JFrame frame = new JFrame("Sua Tela");
-
-        // Crie um JPanel para conter a imagem
-        JPanel panel = new JPanel();
-
-        // Crie um JLabel com a imagem e adicione ao JPanel
-        bgImg = new JLabel(new ImageIcon("src/imagens/fundologin.png"));
-        panel.add(bgImg);
-
-        // Adicione o JPanel ao JFrame
-        frame.getContentPane().add(panel);
+        JFrame frame = new JFrame("Login");
         
-        
-         ImageIcon icone = new ImageIcon("src/imagens/medico.png");
-        setIconImage(icone.getImage());
     }
 
     private void initComponents() {
         setLayout(null);  // Defina o layout como nulo para posicionamento absoluto
 
-        // Configurações gerais do JFrame
-        setTitle("Login");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(450, 300);
-        setLocationRelativeTo(null);
-        setResizable(false);
+       setLayout(null);
 
-        Container tela = getContentPane();
+    setTitle("Login");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setSize(450, 300);
+    setLocationRelativeTo(null);
+    setResizable(false);
 
+    Container tela = getContentPane();
+        
+       
+
+      
+    
         // Configuração do ícone
-        ImageIcon icone = new ImageIcon("src/imagens/Logo.png");
+        ImageIcon icone = new ImageIcon("src/imagens/medico.png");
         setIconImage(icone.getImage());
 
         // Configuração dos ícones para usuário e senha
@@ -118,6 +111,13 @@ public class Login extends JFrame {
         mensagemErro.setBounds(100, 237, 300, 20); // Posição da mensagem de erro
         tela.add(mensagemErro);
         
+        
+        // Crie um JLabel com a imagem de fundo e adicione ao contentPane
+    bgImg = new JLabel(new ImageIcon("src/imagens/fundologin.jpg"));
+    bgImg.setBounds(0, 0, 450, 300); // Defina as dimensões conforme necessário
+    tela.add(bgImg);
+
+
         
         setSize(450, 300); // Aumento do tamanho da janela
         setLocationRelativeTo(null); // Centraliza a janela no meio

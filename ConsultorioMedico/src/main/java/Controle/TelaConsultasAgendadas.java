@@ -401,7 +401,8 @@ excluir.addActionListener(new ActionListener() {
         try {
             int resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o registro: ", "Confirmar Exclusão", JOptionPane.YES_NO_OPTION, 3);
             if (resposta == 0) {
-                sql = "delete from consultas where id = " + textFieldId.getText();
+               sql = "DELETE FROM consultas WHERE id = '" + textFieldId.getText() + "'";
+
                 int excluir = conexaoConsultas.statement.executeUpdate(sql);
                 if (excluir == 1) {
                     JOptionPane.showMessageDialog(null, "Exclusão realizada com sucesso!", "Mensagem do Programa", JOptionPane.INFORMATION_MESSAGE);
